@@ -144,4 +144,190 @@ h1 {
     color: white;
     border: 1px solid #4a90e2;
     border-radius: 4px;
-    cursor: poin
+    cursor: pointer;
+    font-size: 16px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* ================================== */
+/*          GRID & CELLS             */
+/* ================================== */
+.item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cell {
+    width: 100px;
+    aspect-ratio: 1 / 1;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    background-color: #fff;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 6 × 3 grid (18 boxes) */
+#grid {
+    display: grid;
+    grid-template-columns: repeat(6, 100px);
+    gap: 20px;
+    justify-content: center;
+    max-width: 1000px;
+    margin: 20px auto;
+}
+
+/* Images inside cells */
+#grid img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+}
+
+/* ================================== */
+/*          IMAGE LIST               */
+/* ================================== */
+.image-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    justify-content: flex-start;
+}
+
+.image-list img {
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    cursor: pointer;
+    border-radius: 4px;
+    border: 2px solid transparent;
+}
+
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 1px;
+}
+
+.selected-label {
+    position: absolute;
+    top: 5px;
+    left: 5px;
+    background: rgba(0, 0, 255, 0.7);
+    color: white;
+    padding: 2px 5px;
+    font-size: 14px;
+    border-radius: 3px;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.image-item {
+    display: block;
+    max-width: 100%;
+    max-height: 100%;
+}
+
+/* ================================== */
+/*          TABS STYLING             */
+/* ================================== */
+.tab-wrap {
+    display: flex;
+    flex-wrap: wrap;
+    width: 720px;
+    margin: 5px auto;
+}
+
+.tab-label {
+    color: White;
+    background: LightGray;
+    font-weight: bold;
+    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
+    white-space: nowrap;
+    text-align: center;
+    padding: 10px .5em;
+    order: -1;
+    position: relative;
+    z-index: 1;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+    flex: 1;
+    box-sizing: border-box;
+}
+
+.tab-wrap:after {
+    content: '';
+    width: 100%;
+    height: 3px;
+    background: DeepSkyBlue;
+    display: block;
+    order: -1;
+}
+
+.tab-label:not(:last-of-type) {
+    margin-right: 5px;
+}
+
+.tab-content {
+    width: 100%;
+    height: 0;
+    overflow: hidden;
+    opacity: 0;
+    background-color: #fafafa;
+}
+
+.tab-switch:checked + .tab-label {
+    background: DeepSkyBlue;
+}
+
+.tab-switch:checked + .tab-label + .tab-content {
+    height: auto;
+    overflow: auto;
+    padding: 15px;
+    opacity: 1;
+    transition: .5s opacity;
+    box-shadow: 0 0 3px rgba(0,0,0,.2);
+}
+
+.tab-switch {
+    display: none;
+}
+
+/* ================================== */
+/*          MISC                     */
+/* ================================== */
+.lang-switch {
+    position: absolute;
+    top: 12px;
+    right: 16px;
+    font-size: 14px;
+    opacity: 0.85;
+}
+
+.lang-switch label {
+    margin-left: 8px;
+    cursor: pointer;
+}
+
+/* ================================== */
+/*          RESPONSIVE               */
+/* ================================== */
+@media (max-width: 932px) {
+    #grid {
+        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
+        justify-content: start;
+        padding: 10px 5px 5px 5px;
+    }
+
+    h1 {
+        font-size: 20px;
+    }
+
+    #save-button {
+        padding: 10px 40px;
+        font-size: 14px;
+    }
+}
