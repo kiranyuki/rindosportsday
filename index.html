@@ -15,7 +15,9 @@
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-YW1R3FMTQG"></script>
   <script>
     window.dataLayer = window.dataLayer || [];
-    function gtag(){dataLayer.push(arguments);}
+    function gtag() {
+      dataLayer.push(arguments);
+    }
     gtag('js', new Date());
     gtag('config', 'G-YW1R3FMTQG');
   </script>
@@ -31,6 +33,7 @@
         <input type="radio" name="lang" value="ja" checked>
         日本語
       </label>
+
       <label>
         <input type="radio" name="lang" value="en">
         English
@@ -39,7 +42,9 @@
 
     <h1 data-i18n="title">RINDO推しを選ぶ</h1>
 
-    <button id="save-button" data-i18n="save">Save Image</button>
+    <button id="save-button" data-i18n="save">
+      Save Image
+    </button>
 
     <br>
 
@@ -48,7 +53,7 @@
     </div>
   </header>
 
-  <!-- Grid (18 empty boxes, responsive layout via CSS) -->
+  <!-- Selection Grid -->
   <div id="grid">
     <div class="item" data-position="0"><div class="cell"></div></div>
     <div class="item" data-position="1"><div class="cell"></div></div>
