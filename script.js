@@ -108,7 +108,7 @@ const tabSelections = {};
 
 const i18n = {
   ja: {
-    title: "RINDO推しを選ぶ",
+    title: "RINGAKU！祭 チームメーカー",
     save: "Save Image",
     default: "デフォルト",
     hideLeft: "左バー消滅",
@@ -126,7 +126,7 @@ const i18n = {
     scandoll: "すきゃんどーる",
   },
   en: {
-    title: "Rindo Oshi Selector",
+    title: "Ringaku Fes Team Maker",
     save: "Save Image",
     default: "Default",
     hideLeft: "Hide Left Bar",
