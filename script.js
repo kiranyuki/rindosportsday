@@ -158,6 +158,20 @@ const i18n = {
   }
 };
 
+function applyLang(lang) {
+  const dict = i18n[lang] || i18n.ja;
+
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.dataset.i18n;
+    if (dict[key]) {
+      el.textContent = dict[key];
+    }
+  });
+
+  localStorage.setItem('lang', lang);
+}
+
+
 // --------------------------------------------------
 // SELECTION LOGIC
 
