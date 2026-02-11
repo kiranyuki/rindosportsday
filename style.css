@@ -172,12 +172,12 @@ h1 {
 }
 
 /* ================================== */
-/*          TAB SYSTEM (FIXED)        */
+/*          TAB SYSTEM (PINNED)       */
 /* ================================== */
 
 .tab-wrap {
     display: flex;
-    flex-wrap: wrap;                 /* allow wrapping */
+    flex-wrap: wrap;
     justify-content: center;
     align-items: flex-end;
     gap: 6px;
@@ -185,7 +185,7 @@ h1 {
     margin: 5px auto;
 }
 
-/* TAB BUTTONS */
+/* --- TAB LABELS: ALWAYS ROW 1 --- */
 .tab-label {
     background: LightGray;
     color: white;
@@ -195,21 +195,24 @@ h1 {
     cursor: pointer;
     border-radius: 5px 5px 0 0;
     white-space: nowrap;
-    flex: 0 0 auto;                  /* stay horizontal */
+    flex: 0 0 auto;
+    order: 1;                 /* 👈 FORCE TOP ROW */
 }
 
-/* underline */
+/* underline under tabs */
 .tab-wrap::after {
     content: '';
+    order: 2;
     flex-basis: 100%;
     height: 3px;
     background: DeepSkyBlue;
     margin-top: -1px;
 }
 
-/* CONTENT — FORCE NEW ROW */
+/* --- TAB CONTENT: ALWAYS ROW 3 --- */
 .tab-content {
-    flex-basis: 100%;                /* 👈 critical */
+    order: 3;                 /* 👈 FORCE BELOW ALL TABS */
+    flex-basis: 100%;
     width: 100%;
     display: none;
     background-color: #fafafa;
@@ -224,7 +227,7 @@ h1 {
 .tab-switch:checked + .tab-label + .tab-content {
     display: block;
     padding: 15px;
-    animation: fadeIn .3s ease;
+    animation: fadeIn .25s ease;
 }
 
 /* hide radios */
@@ -237,7 +240,6 @@ h1 {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
-
 
 /* ================================== */
 /*          MISC                     */
