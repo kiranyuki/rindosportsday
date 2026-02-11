@@ -123,7 +123,40 @@ function redrawSelectionLabels() {
       addNumberingAndBorder(container);
     }
   });
+  
 }
+const i18n = {
+  ja: {
+    title: "RINGAKU！祭 チームメーカー",
+    save: "Save Image",
+    mobileHint: "※スマホの人は横画面推奨",
+    svpt: "せーぶぽいんと",
+    yumeneo: "夢喰NEON",
+    ptgs: "ポルガ",
+    lvsk: "らぶしっく",
+    xpia: "XP!A",
+    und: "UNDEЯ DOG",
+    dxu: "デクス",
+    lvls: "ラブレス",
+    astral: "Ⱥstral",
+    kiki: "ki:ki",
+  },
+  en: {
+    title: "Ringaku Fes Team Maker",
+    save: "Save Image",
+    mobileHint: "*Landscape mode recommended on mobile",
+    svpt: "Savepoint",
+    yumeneo: "Yumekui Neon",
+    ptgs: "Poltergeist",
+    lvsk: "Lovesick",
+    xpia: "XP!A",
+    und: "UNDER DOG",
+    dxu: "DeXeultio",
+    lvls: "Luvless",
+    astral: "Astral",
+    kiki: "ki:ki",
+  }
+};
 
 // --------------------------------------------------
 // SELECTION LOGIC
