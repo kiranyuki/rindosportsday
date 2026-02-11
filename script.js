@@ -171,6 +171,25 @@ function applyLang(lang) {
   localStorage.setItem('lang', lang);
 }
 
+function initLangSwitch() {
+  const saved = localStorage.getItem('lang') || 'ja';
+
+  const radio = document.querySelector(`input[name="lang"][value="${saved}"]`);
+  if (radio) radio.checked = true;
+
+  applyLang(saved);
+
+  document.querySelectorAll('input[name="lang"]').forEach(radio => {
+    radio.addEventListener('change', e => {
+      applyLang(e.target.value);
+    });
+  });
+}
+document.addEventListener('DOMContentLoaded', () => {
+  initLangSwitch();   // ← ADD THIS
+  loadImages();
+});
+
 
 // --------------------------------------------------
 // SELECTION LOGIC
@@ -235,7 +254,8 @@ function loadImages() {
 
       contents.forEach(c => {
         if (c.previousElementSibling === tab) {
-          renderCategory(tab.dataset.category, c.querySelector('.image-list'));
+         renderCategory(tab.dataset.category, c.querySelector('.image-list'));
+          refreshLanguage(); // 👈 REQUIRED
         }
       });
     });
@@ -301,12 +321,14 @@ function removeNumberingAndBorder(container) {
   if (label) label.remove();
 }
 
-// --------------------------------------------------
-// INIT
+function refreshLanguage() {
+  const lang =
+    document.querySelector('input[name="lang"]:checked')?.value ||
+    localStorage.getItem('lang') ||
+    'ja';
 
-document.addEventListener('DOMContentLoaded', () => {
-  loadImages();
-});
+  applyLang(lang);
+}
 
 const saveButton = document.getElementById('save-button');
 
