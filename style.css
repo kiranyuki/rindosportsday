@@ -263,13 +263,51 @@ h1 {
 /*          RESPONSIVE               */
 /* ================================== */
 @media (max-width: 932px) {
-    #grid {
-        grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
-        justify-content: start;
-        padding: 10px 5px;
-    }
 
-    h1 {
-        font-size: 20px;
-    }
+  /* ---------- GRID ---------- */
+  #grid {
+    grid-template-columns: repeat(3, 1fr); /* 3 × 6 */
+    gap: 12px;
+    justify-content: center;
+    padding: 10px;
+  }
+
+  .cell {
+    width: 100%;
+  }
+
+  /* ---------- TABS ---------- */
+  .tab-wrap {
+    justify-content: flex-start;
+    overflow-x: auto;
+    white-space: nowrap;
+    gap: 6px;
+    padding: 0 8px;
+  }
+
+  .tab-label {
+    flex: 0 0 auto;
+    font-size: 13px;
+    padding: 8px 12px;
+  }
+
+  .tab-wrap::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* ---------- IMAGE LIST ---------- */
+  .image-list img {
+    width: 80px;
+    height: 80px;
+  }
+
+  /* ---------- HEADER ---------- */
+  h1 {
+    font-size: 18px;
+  }
+
+  #save-button {
+    font-size: 14px;
+    padding: 8px 20px;
+  }
 }
