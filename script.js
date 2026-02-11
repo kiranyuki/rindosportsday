@@ -260,3 +260,31 @@ function removeNumberingAndBorder(container) {
 document.addEventListener('DOMContentLoaded', () => {
   loadImages();
 });
+
+const saveButton = document.getElementById('save-button');
+
+if (saveButton) {
+  saveButton.addEventListener('click', async () => {
+    const grid = document.getElementById('grid');
+    if (!grid) {
+      alert('Grid not found');
+      return;
+    }
+
+    try {
+      const canvas = await html2canvas(grid, {
+        useCORS: true,
+        backgroundColor: null,
+        scale: 2
+      });
+
+      const link = document.createElement('a');
+      link.download = 'ringaku_team.png';
+      link.href = canvas.toDataURL('image/png');
+      link.click();
+    } catch (e) {
+      console.error(e);
+      alert('Failed to save image');
+    }
+  });
+}
