@@ -253,9 +253,28 @@ h1 {
 /* ================================== */
 /*          RESPONSIVE               */
 /* ================================== */
+/* mobile tab sizing */
 @media (max-width: 932px) {
   .tab-label {
     font-size: 13px;
     padding: 8px 12px;
+  }
+}
+
+/* PORTRAIT → 3 × 6 */
+@media (orientation: portrait) {
+  #grid {
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    max-width: none;
+  }
+}
+
+/* LANDSCAPE → 6 × 3 */
+@media (orientation: landscape) {
+  #grid {
+    grid-template-columns: repeat(6, 1fr);
+    width: 100%;
+    max-width: none;
   }
 }
