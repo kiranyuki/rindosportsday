@@ -226,6 +226,13 @@ h1 {
   display: none;
 }
 
+#grid {
+  position: relative;
+  z-index: 2;
+  background: transparent;
+}
+
+
 
 /* ================================== */
 /*          MISC                     */
