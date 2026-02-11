@@ -1,13 +1,13 @@
 const imageFolder = 'github/';
 const imageData = [
     { src: 'amato.png', category: 'xpia' },
-    { src: 'tsubaki1.png', category: 'xpia' },
+    { src: 'tsubaki.png', category: 'xpia' },
     { src: 'uto.png', category: 'xpia' },
     { src: 'riu.png', category: 'xpia' },
     { src: 'rintaro.png', category: 'xpia' },
     { src: 'ken.png', category: 'xpia' },
     { src: 'mio.png', category: 'xpia' },
-    { src: 'name1.png', category: 'xpia' },
+    { src: 'name.png', category: 'xpia' },
     { src: 'naichi.png', category: 'xpia' },
     { src: 'haku.png', category: 'xpia' },
 
@@ -46,13 +46,13 @@ const imageData = [
     { src: 'komugi.png', category: 'und' },
     { src: 'ito.png', category: 'und' },
 
-    { src: 'fuyumi1.png', category: 'lvls' },
-    { src: 'yuki1.png', category: 'lvls' },
+    { src: 'fuyumi.png', category: 'lvls' },
+    { src: 'yuki.png', category: 'lvls' },
     { src: 'fuma.png', category: 'lvls' },
     { src: 'ibuki.png', category: 'lvls' },
     { src: 'yuma.png', category: 'lvls' },
     { src: 'yutaka.png', category: 'lvls' },
-    { src: 'taro1.png', category: 'lvls' },
+    { src: 'taro.png', category: 'lvls' },
 
     { src: 'tsubaki.png', category: 'yumeneo' },
     { src: 'name.png', category: 'yumeneo' },
@@ -64,10 +64,10 @@ const imageData = [
     { src: 'raito.png', category: 'yumeneo' },
 
     { src: 'ryo.png', category: 'lvsk' },
-    { src: 'etsuya1.PNG', category: 'lvsk' },
+    { src: 'etsuya.png', category: 'lvsk' },
     { src: 'taro.png', category: 'lvsk' },
     { src: 'hayate1.png', category: 'lvsk' },
-    { src: 'uto1.png', category: 'lvsk' },
+    { src: 'uto.png', category: 'lvsk' },
     { src: 'satsuki.png', category: 'lvsk' },
     { src: 'sakura.png', category: 'lvsk' },
     { src: 'yuson.png', category: 'lvsk' },
@@ -85,20 +85,12 @@ const imageData = [
     { src: 'riki.png', category: 'astral' },
     { src: 'nagisa.png', category: 'astral' },
     { src: 'lei.png', category: 'astral' },
-    { src: 'minato1.png', category: 'astral' },
+    { src: 'minato.png', category: 'astral' },
     { src: 'tsubasa.png', category: 'astral' },
     { src: 'will.png', category: 'astral' },
 
-    { src: 'kaguya.png', category: 'scandoll' },
-    { src: 'sino.png', category: 'scandoll' },
-    { src: 'asato.png', category: 'scandoll' },
-    { src: 'reo.png', category: 'scandoll' },
-    { src: 'soran.png', category: 'scandoll' },
-    { src: 'ryuto.png', category: 'scandoll' },
-    { src: 'aki.png', category: 'scandoll' },
-
 ];
-const MAX_SELECTION = 1;
+const MAX_SELECTION = 18;
 const SELECTED_LABEL = '☑';
 
 //------------------------------------------------------------------------------------------------
