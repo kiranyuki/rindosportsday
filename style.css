@@ -175,40 +175,41 @@ h1 {
 /*          TAB SYSTEM (LOCKED)       */
 /* ================================== */
 
+/* ===============================
+   WRAPPING HORIZONTAL TABS
+   =============================== */
+
 .tab-wrap {
-    position: relative;                 /* anchor for absolute content */
-    display: flex;
-    justify-content: center;
-    gap: 6px;
-    max-width: 100%;
-    margin: 5px auto 0;
-    padding-bottom: 3px;
+  display: flex;
+  flex-wrap: wrap;              /* ✅ allow wrapping */
+  align-items: flex-end;
+  gap: 6px;
 }
 
-/* TAB LABELS — NEVER MOVE */
+/* each tab+content pair */
+.tab-group {
+  display: contents;            /* keep JS structure */
+}
+
+/* tab buttons */
 .tab-label {
-    background: LightGray;
-    color: white;
-    font-weight: bold;
-    text-align: center;
-    padding: 10px 16px;
-    cursor: pointer;
-    border-radius: 5px 5px 0 0;
-    white-space: nowrap;
-    flex: 0 0 auto;
-    z-index: 2;
+  flex: 0 1 auto;               /* ✅ wrap naturally */
+  white-space: nowrap;
 }
 
-/* underline */
-.tab-wrap::after {
-    content: '';
-    position: absolute;
-    left: 0;
-    bottom: 0;
-    width: 100%;
-    height: 3px;
-    background: DeepSkyBlue;
-    z-index: 1;
+/* force content onto its own row */
+.tab-content {
+  flex-basis: 100%;             /* ✅ new row */
+  order: 999;                   /* always after tabs */
+  display: none;
+}
+
+/* active content only */
+.tab-switch:checked + .tab-label + .tab-content {
+  display: block;
+  padding: 10px;
+}
+
 }
 
 /* TAB CONTENT — REMOVED FROM FLOW */
