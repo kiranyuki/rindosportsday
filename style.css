@@ -276,25 +276,40 @@ h1 {
     width: 100%;
   }
 
-  /* ---------- TABS ---------- */
+/* ===== TAB BAR (FORCE HORIZONTAL) ===== */
   .tab-wrap {
+    display: flex !important;
+    flex-direction: row !important;
+    flex-wrap: nowrap !important;     /* ❗ no wrapping */
+    align-items: flex-end;
     justify-content: flex-start;
-    overflow-x: auto;
-    white-space: nowrap;
-    gap: 6px;
+
+    overflow-x: auto;                 /* ❗ horizontal scroll */
+    overflow-y: hidden;
+
+    width: 100%;
+    max-width: 100%;
     padding: 0 8px;
+    box-sizing: border-box;
+  }
+
+  .tab-group {
+    display: contents;                /* keep JS structure */
   }
 
   .tab-label {
-    flex: 0 0 auto;
+    flex: 0 0 auto !important;        /* ❗ never stretch */
+    white-space: nowrap;              /* ❗ single line text */
+
     font-size: 13px;
     padding: 8px 12px;
   }
 
+  /* optional: hide scrollbar */
   .tab-wrap::-webkit-scrollbar {
     display: none;
   }
-
+}
   /* ---------- IMAGE LIST ---------- */
   .image-list img {
     width: 80px;
