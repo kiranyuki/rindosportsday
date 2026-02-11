@@ -172,20 +172,20 @@ h1 {
 }
 
 /* ================================== */
-/*          TAB SYSTEM (PINNED)       */
+/*          TAB SYSTEM (LOCKED)       */
 /* ================================== */
 
 .tab-wrap {
+    position: relative;                 /* anchor for absolute content */
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
-    align-items: flex-end;
     gap: 6px;
     max-width: 100%;
-    margin: 5px auto;
+    margin: 5px auto 0;
+    padding-bottom: 3px;
 }
 
-/* --- TAB LABELS: ALWAYS ROW 1 --- */
+/* TAB LABELS — NEVER MOVE */
 .tab-label {
     background: LightGray;
     color: white;
@@ -196,26 +196,31 @@ h1 {
     border-radius: 5px 5px 0 0;
     white-space: nowrap;
     flex: 0 0 auto;
-    order: 1;                 /* 👈 FORCE TOP ROW */
+    z-index: 2;
 }
 
-/* underline under tabs */
+/* underline */
 .tab-wrap::after {
     content: '';
-    order: 2;
-    flex-basis: 100%;
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
     height: 3px;
     background: DeepSkyBlue;
-    margin-top: -1px;
+    z-index: 1;
 }
 
-/* --- TAB CONTENT: ALWAYS ROW 3 --- */
+/* TAB CONTENT — REMOVED FROM FLOW */
 .tab-content {
-    order: 3;                 /* 👈 FORCE BELOW ALL TABS */
-    flex-basis: 100%;
+    position: absolute;                 /* 👈 CRITICAL */
+    top: 100%;                          /* sit below tabs */
+    left: 0;
     width: 100%;
     display: none;
     background-color: #fafafa;
+    z-index: 0;
+    padding: 15px;
 }
 
 /* active tab */
@@ -223,22 +228,14 @@ h1 {
     background: DeepSkyBlue;
 }
 
-/* show active content */
+/* show content */
 .tab-switch:checked + .tab-label + .tab-content {
     display: block;
-    padding: 15px;
-    animation: fadeIn .25s ease;
 }
 
 /* hide radios */
 .tab-switch {
     display: none;
-}
-
-/* animation */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to   { opacity: 1; }
 }
 
 /* ================================== */
