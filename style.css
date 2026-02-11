@@ -4,8 +4,6 @@
 @font-face {
     font-family: 'SDK_JP_WEB';
     src: url('font/SDK_JP_WEB.ttf') format('truetype');
-    font-weight: normal;
-    font-style: normal;
 }
 
 body {
@@ -21,7 +19,7 @@ body {
 /*          SIDEBAR                  */
 /* ================================== */
 .sidebar {
-    background-color: #333;
+    background: linear-gradient(to bottom, #444, #777);
     color: white;
     width: 250px;
     height: 100%;
@@ -29,18 +27,12 @@ body {
     top: 0;
     left: 0;
     z-index: 1000;
-    transition: transform 0.3s ease;
-    background: linear-gradient(to bottom, #444, #777);
     border-right: 5px solid #ffcc00;
-    transform: translateX(0);
+    transition: transform 0.3s ease;
 }
 
 .sidebar.hidden {
     transform: translateX(-200px);
-}
-
-.sidebar.active {
-    transform: translateX(0);
 }
 
 .sidebar-header {
@@ -53,67 +45,21 @@ body {
 }
 
 .sidebar-title {
-    font-family: 'SDK_JP_WEB', sans-serif;
     font-size: 20px;
-    color: white;
     margin-left: 10px;
-}
-
-.parent-node {
-    padding: 10px;
-    margin-bottom: 5px;
-    cursor: pointer;
-    display: block;
-    z-index: 1001;
-}
-
-.child-nodes {
-    display: none;
-    list-style-type: none;
-    padding-left: 20px;
-}
-
-.child-nodes.active {
-    display: block;
-}
-
-nav ul {
-    list-style: none;
-    padding: 0;
-    text-align: left;
-}
-
-nav ul li {
-    padding: 5px;
-}
-
-nav ul li a {
-    color: white;
-    text-decoration: none;
-}
-
-nav ul li .child-nodes li:hover {
-    background-color: rgba(255, 204, 0, 0.3);
-}
-
-nav ul li:hover > a {
-    background-color: transparent;
 }
 
 /* Toggle button */
 #toggle-button {
     font-family: 'SDK_JP_WEB', sans-serif;
-    border: 2px solid #ffffff;
+    border: 2px solid #fff;
     background-color: #444;
     border-radius: 5px;
     padding: 5px 10px;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s;
     color: white;
     cursor: pointer;
     font-size: 15px;
     height: 35px;
-    margin-left: 10px;
 }
 
 #toggle-button:hover {
@@ -124,8 +70,6 @@ nav ul li:hover > a {
 /*          HEADER & TABS            */
 /* ================================== */
 h1 {
-    font-family: 'SDK_JP_WEB', sans-serif;
-    text-align: center;
     margin-bottom: 5px;
 }
 
@@ -134,30 +78,20 @@ h1 {
     justify-content: center;
     gap: 8px;
     margin: 15px auto 10px;
-    flex-wrap: nowrap;
-}
-
-.tab {
-    padding: 10px 20px;
-    margin: 0 5px;
-    background-color: #4a90e2;
-    color: white;
-    border: 1px solid #4a90e2;
-    border-radius: 4px;
-    cursor: pointer;
-    font-size: 16px;
-    transition: background-color 0.3s, color 0.3s;
 }
 
 /* ================================== */
 /*          GRID & CELLS             */
 /* ================================== */
+
+/* wrapper item (JS-safe) */
 .item {
     display: flex;
-    align-items: center;
     justify-content: center;
+    align-items: center;
 }
 
+/* actual selectable cell */
 .cell {
     width: 100px;
     aspect-ratio: 1 / 1;
@@ -170,7 +104,7 @@ h1 {
     align-items: center;
 }
 
-/* 6 × 3 grid (18 boxes) */
+/* 6 × 3 grid = 18 boxes */
 #grid {
     display: grid;
     grid-template-columns: repeat(6, 100px);
@@ -180,16 +114,17 @@ h1 {
     margin: 20px auto;
 }
 
-/* Images inside cells */
+/* images inside grid cells */
 #grid img {
     max-width: 100%;
     max-height: 100%;
     object-fit: contain;
 }
-.logo {
-  display: none;
-}
 
+/* keep logo node for JS, hide visually */
+.logo {
+    display: none;
+}
 
 /* ================================== */
 /*          IMAGE LIST               */
@@ -201,6 +136,12 @@ h1 {
     justify-content: flex-start;
 }
 
+.image-container {
+    position: relative;
+    display: inline-block;
+    margin: 1px;
+}
+
 .image-list img {
     width: 100px;
     height: 100px;
@@ -210,12 +151,7 @@ h1 {
     border: 2px solid transparent;
 }
 
-.image-container {
-    position: relative;
-    display: inline-block;
-    margin: 1px;
-}
-
+/* selected marker */
 .selected-label {
     position: absolute;
     top: 5px;
@@ -236,7 +172,7 @@ h1 {
 }
 
 /* ================================== */
-/*          TABS STYLING             */
+/*          TAB SYSTEM               */
 /* ================================== */
 .tab-wrap {
     display: flex;
@@ -246,33 +182,21 @@ h1 {
 }
 
 .tab-label {
-    color: White;
     background: LightGray;
+    color: white;
     font-weight: bold;
-    text-shadow: 0 -1px 0 rgba(0,0,0,.2);
-    white-space: nowrap;
     text-align: center;
     padding: 10px .5em;
-    order: -1;
-    position: relative;
-    z-index: 1;
     cursor: pointer;
     border-radius: 5px 5px 0 0;
     flex: 1;
-    box-sizing: border-box;
 }
 
-.tab-wrap:after {
+.tab-wrap::after {
     content: '';
     width: 100%;
     height: 3px;
     background: DeepSkyBlue;
-    display: block;
-    order: -1;
-}
-
-.tab-label:not(:last-of-type) {
-    margin-right: 5px;
 }
 
 .tab-content {
@@ -289,11 +213,9 @@ h1 {
 
 .tab-switch:checked + .tab-label + .tab-content {
     height: auto;
-    overflow: auto;
     padding: 15px;
     opacity: 1;
-    transition: .5s opacity;
-    box-shadow: 0 0 3px rgba(0,0,0,.2);
+    transition: opacity .5s;
 }
 
 .tab-switch {
@@ -323,15 +245,10 @@ h1 {
     #grid {
         grid-template-columns: repeat(auto-fill, minmax(100px, 1fr));
         justify-content: start;
-        padding: 10px 5px 5px 5px;
+        padding: 10px 5px;
     }
 
     h1 {
         font-size: 20px;
-    }
-
-    #save-button {
-        padding: 10px 40px;
-        font-size: 14px;
     }
 }
