@@ -172,19 +172,20 @@ h1 {
 }
 
 /* ================================== */
-/*          TAB SYSTEM               */
+/*          TAB SYSTEM (FIXED)        */
 /* ================================== */
+
 .tab-wrap {
     display: flex;
-    flex-wrap: nowrap;          /* ❗ prevent vertical stacking */
+    flex-wrap: wrap;                 /* allow wrapping */
     justify-content: center;
     align-items: flex-end;
     gap: 6px;
     max-width: 100%;
     margin: 5px auto;
-    overflow-x: auto;           /* allow horizontal scroll if needed */
 }
 
+/* TAB BUTTONS */
 .tab-label {
     background: LightGray;
     color: white;
@@ -193,22 +194,22 @@ h1 {
     padding: 10px 16px;
     cursor: pointer;
     border-radius: 5px 5px 0 0;
-    white-space: nowrap;        /* ❗ keep text on one line */
-    flex: 0 0 auto;             /* ❗ stop column behavior */
+    white-space: nowrap;
+    flex: 0 0 auto;                  /* stay horizontal */
 }
 
-/* blue underline */
+/* underline */
 .tab-wrap::after {
     content: '';
-    display: block;
-    width: 100%;
+    flex-basis: 100%;
     height: 3px;
     background: DeepSkyBlue;
     margin-top: -1px;
 }
 
-/* tab content */
+/* CONTENT — FORCE NEW ROW */
 .tab-content {
+    flex-basis: 100%;                /* 👈 critical */
     width: 100%;
     display: none;
     background-color: #fafafa;
@@ -231,11 +232,12 @@ h1 {
     display: none;
 }
 
-/* subtle fade */
+/* animation */
 @keyframes fadeIn {
     from { opacity: 0; }
     to   { opacity: 1; }
 }
+
 
 /* ================================== */
 /*          MISC                     */
