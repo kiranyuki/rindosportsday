@@ -175,72 +175,55 @@ h1 {
 /*          TAB SYSTEM (LOCKED)       */
 /* ================================== */
 
-/* ===============================
-   WRAPPING HORIZONTAL TABS
-   =============================== */
+/* ==================================
+   TAB SYSTEM (CORRECT & STABLE)
+   ================================== */
 
 .tab-wrap {
   display: flex;
-  flex-wrap: wrap;              /* ✅ allow wrapping */
-  align-items: flex-end;
+  flex-wrap: wrap;              /* ✅ wrap when hitting edges */
   gap: 6px;
+  align-items: flex-end;
 }
 
-/* each tab+content pair */
+/* keep radio + label + content logic intact */
 .tab-group {
-  display: contents;            /* keep JS structure */
+  display: contents;
 }
 
 /* tab buttons */
 .tab-label {
   flex: 0 1 auto;               /* ✅ wrap naturally */
   white-space: nowrap;
-}
-
-/* force content onto its own row */
-.tab-content {
-  flex-basis: 100%;             /* ✅ new row */
-  order: 999;                   /* always after tabs */
-  display: none;
-}
-
-/* active content only */
-.tab-switch:checked + .tab-label + .tab-content {
-  display: block;
-  padding: 10px;
-}
-
-}
-
-/* TAB CONTENT — REMOVED FROM FLOW */
-.tab-content {
-    position: absolute;                 /* 👈 CRITICAL */
-    top: 100%;                          /* sit below tabs */
-    left: 0;
-    width: 100%;
-    display: none;
-    background-color: #fafafa;
-    z-index: 0;
-    padding: 15px;
+  padding: 10px 16px;
+  background: LightGray;
+  font-weight: bold;
+  cursor: pointer;
+  border-radius: 5px 5px 0 0;
 }
 
 /* active tab */
 .tab-switch:checked + .tab-label {
-    background: DeepSkyBlue;
+  background: DeepSkyBlue;
 }
 
-/* show content */
+/* content always below ALL tabs */
+.tab-content {
+  flex-basis: 100%;             /* ✅ forces new row */
+  order: 999;                   /* ✅ below every tab row */
+  display: none;
+  background-color: #fafafa;
+  padding: 15px;
+}
+
+/* show only active content */
 .tab-switch:checked + .tab-label + .tab-content {
-    display: block;
+  display: block;
 }
 
 /* hide radios */
 .tab-switch {
-    display: none;
-}
-
-.tab-group {
-  display: contents;
+  display: none;
 }
 
 
@@ -264,66 +247,8 @@ h1 {
 /*          RESPONSIVE               */
 /* ================================== */
 @media (max-width: 932px) {
-
-  /* ---------- GRID ---------- */
-  #grid {
-    grid-template-columns: repeat(3, 1fr); /* 3 × 6 */
-    gap: 12px;
-    justify-content: center;
-    padding: 10px;
-  }
-
-  .cell {
-    width: 100%;
-  }
-
-/* ===== TAB BAR (FORCE HORIZONTAL) ===== */
-  .tab-wrap {
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: nowrap !important;     /* ❗ no wrapping */
-    align-items: flex-end;
-    justify-content: flex-start;
-
-    overflow-x: auto;                 /* ❗ horizontal scroll */
-    overflow-y: hidden;
-
-    width: 100%;
-    max-width: 100%;
-    padding: 0 8px;
-    box-sizing: border-box;
-  }
-
-  .tab-group {
-    display: contents;                /* keep JS structure */
-  }
-
   .tab-label {
-    flex: 0 0 auto !important;        /* ❗ never stretch */
-    white-space: nowrap;              /* ❗ single line text */
-
     font-size: 13px;
     padding: 8px 12px;
-  }
-
-  /* optional: hide scrollbar */
-  .tab-wrap::-webkit-scrollbar {
-    display: none;
-  }
-}
-  /* ---------- IMAGE LIST ---------- */
-  .image-list img {
-    width: 80px;
-    height: 80px;
-  }
-
-  /* ---------- HEADER ---------- */
-  h1 {
-    font-size: 18px;
-  }
-
-  #save-button {
-    font-size: 14px;
-    padding: 8px 20px;
   }
 }
