@@ -64,4 +64,199 @@ const imageData = [
 
   { src: 'tsubaki.png', category: 'yumeneo' },
   { src: 'name.png', category: 'yumeneo' },
-  { src: 'yura.png', cate
+  { src: 'yura.png', category: 'yumeneo' },
+  { src: 'saku.png', category: 'yumeneo' },
+  { src: 'kyouhei.png', category: 'yumeneo' },
+  { src: 'shota.png', category: 'yumeneo' },
+  { src: 'hayato.png', category: 'yumeneo' },
+  { src: 'raito.png', category: 'yumeneo' },
+
+  { src: 'ryo.png', category: 'lvsk' },
+  { src: 'etsuya.png', category: 'lvsk' },
+  { src: 'taro.png', category: 'lvsk' },
+  { src: 'hayate1.png', category: 'lvsk' },
+  { src: 'uto.png', category: 'lvsk' },
+  { src: 'satsuki.png', category: 'lvsk' },
+  { src: 'sakura.png', category: 'lvsk' },
+  { src: 'yuson.png', category: 'lvsk' },
+  { src: 'taiyou.png', category: 'lvsk' },
+
+  { src: 'sou.png', category: 'ptgs' },
+  { src: 'toa.png', category: 'ptgs' },
+  { src: 'umi.png', category: 'ptgs' },
+  { src: 'mea.png', category: 'ptgs' },
+  { src: 'mira.png', category: 'ptgs' },
+  { src: 'ten.png', category: 'ptgs' },
+  { src: 'tsuki.png', category: 'ptgs' },
+
+  { src: 'jin.png', category: 'astral' },
+  { src: 'riki.png', category: 'astral' },
+  { src: 'nagisa.png', category: 'astral' },
+  { src: 'lei.png', category: 'astral' },
+  { src: 'minato.png', category: 'astral' },
+  { src: 'tsubasa.png', category: 'astral' },
+  { src: 'will.png', category: 'astral' }
+];
+
+// --------------------------------------------------
+// GRID
+
+function redrawGrid() {
+  const cells = document.querySelectorAll('.cell');
+  cells.forEach(cell => (cell.innerHTML = ''));
+
+  selectedImages.forEach((src, i) => {
+    if (!cells[i]) return;
+    const img = document.createElement('img');
+    img.src = `${imageFolder}${src}`;
+    img.classList.add('selected');
+    cells[i].appendChild(img);
+  });
+}
+
+function redrawSelectionLabels() {
+  document.querySelectorAll('.image-item').forEach(img => {
+    const container = img.parentElement;
+    removeNumberingAndBorder(container);
+
+    if (selectedImages.includes(img.dataset.src)) {
+      addNumberingAndBorder(container);
+    }
+  });
+}
+
+// --------------------------------------------------
+// SELECTION LOGIC
+
+function handleImageClick(img) {
+  const src = img.dataset.src;
+  const modeC = document.getElementById('modeC')?.checked;
+  const index = selectedImages.indexOf(src);
+
+  // MODE C: fill all 18
+  if (modeC) {
+    selectedImages = Array(MAX_SELECTION).fill(src);
+
+    document.querySelectorAll('.image-item.selected').forEach(i => {
+      i.classList.remove('selected');
+      removeNumberingAndBorder(i.parentElement);
+    });
+
+    img.classList.add('selected');
+    addNumberingAndBorder(img.parentElement);
+    redrawGrid();
+    redrawSelectionLabels();
+    return;
+  }
+
+  // UNSELECT
+  if (index !== -1) {
+    selectedImages.splice(index, 1);
+    img.classList.remove('selected');
+    removeNumberingAndBorder(img.parentElement);
+    redrawGrid();
+    redrawSelectionLabels();
+    return;
+  }
+
+  // LIMIT
+  if (selectedImages.length >= MAX_SELECTION) {
+    alert(`最大 ${MAX_SELECTION} 人まで選択できます`);
+    return;
+  }
+
+  // SELECT
+  selectedImages.push(src);
+  img.classList.add('selected');
+  addNumberingAndBorder(img.parentElement);
+  redrawGrid();
+  redrawSelectionLabels();
+}
+
+// --------------------------------------------------
+// TABS + RENDERING
+
+function loadImages() {
+  const tabs = document.querySelectorAll('.tab-label');
+  const contents = document.querySelectorAll('.tab-content');
+  const modeC = document.getElementById('modeC');
+
+  tabs.forEach(tab => {
+    tab.addEventListener('click', () => {
+      tabs.forEach(t => t.classList.remove('active'));
+      tab.classList.add('active');
+
+      contents.forEach(c => {
+        if (c.previousElementSibling === tab) {
+          renderCategory(tab.dataset.category, c.querySelector('.image-list'));
+        }
+      });
+    });
+  });
+
+  tabs[0]?.click();
+
+  if (modeC) {
+    modeC.addEventListener('change', () => {
+      selectedImages = [];
+      document.querySelectorAll('.image-item.selected').forEach(i => {
+        i.classList.remove('selected');
+        removeNumberingAndBorder(i.parentElement);
+      });
+      redrawGrid();
+      redrawSelectionLabels();
+    });
+  }
+}
+
+function renderCategory(category, container) {
+  container.innerHTML = '';
+  imageData
+    .filter(img => img.category === category)
+    .forEach(data => {
+      const wrap = document.createElement('div');
+      wrap.className = 'image-container';
+
+      const img = document.createElement('img');
+      img.src = `${imageFolder}${data.src}`;
+      img.dataset.src = data.src;
+      img.dataset.category = category;
+      img.className = 'image-item';
+
+      if (selectedImages.includes(data.src)) {
+        img.classList.add('selected');
+        addNumberingAndBorder(wrap);
+      }
+
+      img.addEventListener('click', () => handleImageClick(img));
+      wrap.appendChild(img);
+      container.appendChild(wrap);
+    });
+}
+
+// --------------------------------------------------
+// UI HELPERS
+
+function addNumberingAndBorder(container) {
+  container.style.border = '2px solid blue';
+  let label = container.querySelector('.selected-label');
+  if (!label) {
+    label = document.createElement('div');
+    label.className = 'selected-label';
+    label.textContent = SELECTED_LABEL;
+    container.appendChild(label);
+  }
+}
+
+function removeNumberingAndBorder(container) {
+  container.style.border = 'none';
+  const label = container.querySelector('.selected-label');
+  if (label) label.remove();
+}
+
+// --------------------------------------------------
+// INIT
+
+document.addEventListener('DOMContentLoaded', () => {
+  loadImages();
+});
